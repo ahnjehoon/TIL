@@ -2,17 +2,15 @@ import entity.Blog;
 import entity.Post;
 
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Main {
-    public static void main(String[] args) throws IllegalAccessException {
-        var blog = objectToJson(new Blog("첫번째 블로그", "주소.."), 0);
-        var post = objectToJson(new Post(1, "첫번째 글", "제곧내", false), 0);
+    public static void main(String[] args) throws IllegalAccessException, MalformedURLException {
+        var post1 = new Post(1, "첫번째 글", "제곧내", false);
+        var blog = new Blog("첫번째 블로그", new URL("http://a.b.c"), post1);
 
-        System.out.println("converted blog");
-        System.out.println(blog);
-
-        System.out.println("converted post");
-        System.out.println(post);
+        System.out.println(objectToJson(blog, 0));
     }
 
     private static String objectToJson(Object instance, int indentSize) throws IllegalAccessException {
@@ -39,6 +37,10 @@ public class Main {
                 sb.append(formatStringValue(field.get(instance).toString()));
             } else if (field.getType().isPrimitive()) {
                 sb.append(formatPrimitiveValue(field, instance));
+            } else if (field.getType().equals(java.net.URL.class)) {
+                sb.append(formatStringValue(field.get(instance).toString()));
+            } else {
+                sb.append(objectToJson(field.get(instance), indentSize + 1));
             }
 
             if (i != fields.length - 1) {
