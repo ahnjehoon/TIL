@@ -187,7 +187,7 @@ spring.jpa.properties.hibernate.hbm2ddl.auto=none
 5. Application run
    sensor , sensor_data, flyway_schema_history 테이블이 생성됨
 
-![Untitled](.\images\spring%20flyway%20migration1.png)
+![Untitled](images/spring%20flyway%20migration1.png)
 
 1. Location.class 생성
    
@@ -236,7 +236,7 @@ alter table if exists sensor add constraint FKfrcgwt86n3lemfu3ketsx4x71 foreign 
    
     flyway_schema_history 테이블에 0.1v 데이터가 추가됨
 
-![Untitled](.\images\spring%20flyway%20migration2.png)
+![Untitled](images/spring%20flyway%20migration2.png)
 
 ---
 
