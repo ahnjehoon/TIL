@@ -1,0 +1,325 @@
+{
+  "main": {
+    "id": "c3078e4d51394dff",
+    "type": "split",
+    "children": [
+      {
+        "id": "e6c7e2c4d73e4bbb",
+        "type": "split",
+        "children": [
+          {
+            "id": "5093f405ad081cf9",
+            "type": "tabs",
+            "dimension": 67.45689655172413,
+            "children": [
+              {
+                "id": "af1288fff2250928",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "2024-10-12.md",
+                    "mode": "source",
+                    "source": true
+                  }
+                }
+              },
+              {
+                "id": "18b37b577ecc785a",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "java/Thread - run과 start 차이.md",
+                    "mode": "source",
+                    "source": true
+                  }
+                }
+              },
+              {
+                "id": "6c33c3718d21d0bb",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "java/JVM-ClassLoader.md",
+                    "mode": "source",
+                    "source": true
+                  }
+                }
+              }
+            ],
+            "currentTab": 1
+          },
+          {
+            "id": "b5b0d43bfc1bc9a3",
+            "type": "tabs",
+            "dimension": 32.543103448275865,
+            "children": [
+              {
+                "id": "5c199fe5722a96c6",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "java/Symbolic Reference.md",
+                    "mode": "source",
+                    "source": true
+                  }
+                }
+              },
+              {
+                "id": "e2df4d028b010508",
+                "type": "leaf",
+                "state": {
+                  "type": "diagram",
+                  "state": {
+                    "file": "diagram/JVM 8.svg"
+                  }
+                }
+              },
+              {
+                "id": "75313f17f90233f1",
+                "type": "leaf",
+                "state": {
+                  "type": "diagram",
+                  "state": {
+                    "file": "diagram/JVM-ClassLoader.svg"
+                  }
+                }
+              },
+              {
+                "id": "8d1c84816a93b605",
+                "type": "leaf",
+                "state": {
+                  "type": "diagram-edit",
+                  "state": {
+                    "file": "diagram/JVM-ClassLoader.svg"
+                  }
+                }
+              },
+              {
+                "id": "f6edecec78ed00be",
+                "type": "leaf",
+                "state": {
+                  "type": "diagram",
+                  "state": {
+                    "file": "diagram/JVM.svg"
+                  }
+                }
+              }
+            ],
+            "currentTab": 3
+          }
+        ],
+        "direction": "horizontal"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "71c8685419064f31",
+    "type": "split",
+    "children": [
+      {
+        "id": "b5d532709930b657",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "10d96b06d4eb58fb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d9d392db73d2fad7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "16692b4b560a0c42",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 313.5
+  },
+  "right": {
+    "id": "0a543bc9e3bacfb5",
+    "type": "split",
+    "children": [
+      {
+        "id": "12a7f64b20066719",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f3ee41317dc0bde5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "java/Thread - run과 start 차이.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "49eeab389fa8b03d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "java/Thread - run과 start 차이.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "e5e924991f2c3474",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "5571fc0a7933a91a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "java/Thread - run과 start 차이.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:퀵 스위처 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 데일리 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false
+    }
+  },
+  "floating": {
+    "id": "d5562b31216fc2c5",
+    "type": "floating",
+    "children": [
+      {
+        "id": "5ff928b1e0b7b34d",
+        "type": "window",
+        "children": [
+          {
+            "id": "41770c97fc2c3994",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "9c8c4a698e5c1e65",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "java/JVM-Metaspace.md",
+                    "mode": "preview",
+                    "source": true
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 1386,
+        "y": 0,
+        "width": 1015,
+        "height": 1392,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "18b37b577ecc785a",
+  "lastOpenFiles": [
+    "java/JVM-Metaspace.md",
+    "java/Thread - run과 start 차이.md",
+    "diagram/JVM-ClassLoader.svg",
+    "java/JVM 구조.md",
+    "java/Thread - 버전별 차이.md",
+    "java/Thread.md",
+    "java/JVM.md",
+    "2024-10-12.md",
+    "diagram/JVM 8.svg",
+    "java/JVM-ClassLoader.md",
+    "diagram/JVM.svg",
+    "java/Symbolic Reference.md",
+    "spring/작성예정-reflection,proxy.md",
+    "동시성 프로그래밍/Synchronization.md",
+    "spring flyway migration.md",
+    "README.md",
+    "2024-10-11.md",
+    "F-LAB.md",
+    "spring",
+    "java/java-memory-structure.png",
+    "diagram/JVM 7.svg",
+    "java/Untitled Diagram.svg",
+    "기술면접-네트워크.md",
+    "기술면접-JAVA.md",
+    "기술면접-Spring.md",
+    "java/(미완료)포인터가 없는데 NPE(Null Pointer Exception)이 발생하는 이유.md",
+    "동시성 프로그래밍/Lock-Based Synchronization/Semaphore.md",
+    "동시성 프로그래밍/Lock-Free Synchronization",
+    "동시성 프로그래밍/Lock-Based Synchronization/Mutex(Mutual Exclusion).md",
+    "동시성 프로그래밍/Lock-Based Synchronization",
+    "().md",
+    "2024-10-10.md",
+    "무제 파일.canvas",
+    "Untitled Diagram.svg",
+    "Untitled Diagram 1.svg",
+    "DRAW-JVM.md",
+    "a.md",
+    "images/spring flyway migration1.png",
+    "images/spring flyway migration2.png",
+    "동시성 프로그래밍",
+    "JAVA/동시성",
+    "JAVA"
+  ]
+}

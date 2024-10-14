@@ -2,7 +2,7 @@
 ![[JVM 7.svg]]
 
 -  Java 8 ~
-![[JVM.svg]]
+![[JVM 8.svg]]
 
 - Java 8 부터 도입된 메모리 영역
 - 이전 버전에서 사용되던 PermGen(Permanent Generation) 영역을 대체함
