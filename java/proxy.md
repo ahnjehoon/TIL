@@ -165,6 +165,46 @@ Logging 종료, 걸린시간(ms) : 2
 - 바이트 코드를 직접 조작하다보니 속도도 우수함
   (`Dynamic Proxy`는 `Reflection`을 사용해서 이름을 검색하고 호출하기 때문에 느린듯)
 
+## 성능 문제 및 최적화 방안
+- proxy는 동적으로 프록시 객체를 생성하여 유연성을 제공하지만 몇가지 성능 문제가 있음
+### 성능 문제
+1. Reflection으로 인한 오버헤드
+	- Reflection은 JVM 최적화가 제한됨
+	- 메서드 인라이닝(메서드 호출을 본문 코드로 대체) 등과 같은
+	  JIT 컴파일러에서 최적화 기법이 제한됨
+	- 컴파일 시점에 어떤 메서드가 호출될지 알 수 없기 때문임
+	- 동적 특성으로 인해 전체 코드 분석이 어려운 것도 한몫함
+2. 동적 코드 생성 오버헤드
+	- 런타임에 프록시 클래스 생성에 따른 추가 연산 비용
+	- 많은 수의 서로 다른 인터페이스에 대한 프록시 생성 시 부담 증가
+3. 메모리 사용량 증가
+	- 프록시 객체 생성에 따른 추가 메모리 사용 (Metaspace)
+	- 동적으로 생성된 클래스와 관련 데이터 구조로 인한 메모리 부담
+4. 초기화 지연
+	- 프록시 객체 생성 및 초기화에 따른 지연 발생
+	- 특히 많은 수의 프록시 객체를 생성할 때 성능 저하 가능성
+### 최적화 방안
+1. 코드 생성 라이브러리 활용
+	- CGLIB, ByteBuddy 등의 라이브러리를 사용하여 효율적인 프록시 생성
+	- 바이트코드 조작을 통해 리플렉션 오버헤드 감소
+	- [Byte Buddy를 사용한 런타임 코드 생성](https://blogs.oracle.com/javamagazine/post/runtime-code-generation-with-byte-buddy)
+2. 캐싱 활용
+	- 자주 사용되는 프록시 객체와 메서드 객체를 캐싱하여 재사용
+	- 반복적인 객체 생성 및 Reflection 호출 오버헤드 감소
+3. 메서드 핸들 (Java 9 이상)
+	- MethodHandles와 VarHandles를 활용하여 더 효율적인 동적 메서드 호출
+	- 기존 리플렉션보다 성능이 우수하며 JIT 최적화에 더 적합
+```java
+MethodHandles.Lookup lookup = MethodHandles.lookup();
+MethodType mt = MethodType.methodType(void.class, String.class);
+MethodHandle mh = lookup.findVirtual(TargetClass.class, "targetMethod", mt);
+
+// 메서드 호출
+mh.invokeExact(targetObject, "argument");
+```
+4. Reflection 을 최적화 하는것도 좋아보임
+	[The performance implications of Java reflection](https://blogs.oracle.com/javamagazine/post/java-reflection-performance)
+
 ### 예제
 ```java
 import java.util.concurrent.Callable;
