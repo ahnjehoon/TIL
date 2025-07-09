@@ -99,3 +99,119 @@ public void doSomething() {
 - Checked Exception은 롤백되지 않음
 - 해결방법
 	- rollbackFor 속성으로 롤백 대상 예외 지정 가능
+
+### 예시
+```JAVA
+@Component
+@RequiredArgsConstructor
+public class OrderApplication {
+    
+    private final OrderService orderService;
+    private final OrderResultPublisher publisher;
+    
+    public void orderGenerateWithPublish(OrderVo orderVo) {
+        OrderMessage message = this.generateOrder(orderVo); // 트랜잭션 시작&종료
+        
+        // 비동기 Queue 발행
+        publisher.send(message); // 트랜잭션 외부에서 발행
+    }
+    
+    @Transactional
+    public OrderMessage generateOrder(OrderVo orderVo) {
+        Order order = orderService.save(orderVo.toEntity());
+        return OrderMessage.from(order);
+    }
+}
+```
+
+- 문제점
+	- orderGenerateWithPublish 메서드는 트랜잭션이 없고, generateOrder만 @Transactional이 적용됨
+	- DB 커밋 완료 전에 메시지가 발행되어 데이터 불일치 발생 가능
+	- 주문 저장은 성공했지만 메시지 발행이 실패하는 경우
+	- 메시지 발행은 성공했지만 이후 다른 로직에서 예외가 발생하는 경우
+	- 시스템 장애로 인한 메시지 유실 가능성
+
+- 해결방법1: 트랜잭션 통합 + 트랜잭션 이벤트 활용
+```JAVA
+@Component
+@RequiredArgsConstructor
+public class OrderApplication {
+    
+    private final OrderService orderService;
+    private final OrderResultPublisher publisher;
+    
+    @Transactional
+    public void orderGenerateWithPublish(OrderVo orderVo) {
+        Order order = orderService.save(orderVo.toEntity());
+        OrderMessage message = OrderMessage.from(order);
+        
+        // 트랜잭션 커밋 후 메시지 발행
+        TransactionSynchronizationManager.registerSynchronization(
+            new TransactionSynchronization() {
+                @Override
+                public void afterCommit() {
+                    publisher.send(message);
+                }
+            }
+        );
+    }
+}
+```
+
+- 해결방법2: 어플리케이션 이벤트 활용
+```JAVA
+@Component
+@RequiredArgsConstructor
+public class OrderApplication {
+    
+    private final OrderService orderService;
+    private final ApplicationEventPublisher eventPublisher;
+    
+    @Transactional
+    public void orderGenerateWithPublish(OrderVo orderVo) {
+        Order order = orderService.save(orderVo.toEntity());
+        
+        // 도메인 이벤트 발행
+        eventPublisher.publishEvent(new OrderCreatedEvent(order));
+    }
+}
+
+@Component
+@RequiredArgsConstructor
+public class OrderEventHandler {
+    
+    private final OrderResultPublisher publisher;
+    
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    public void handleOrderCreated(OrderCreatedEvent event) {
+        OrderMessage message = OrderMessage.from(event.getOrder());
+        publisher.send(message);
+    }
+}
+```
+
+- 해결방법3: Outbox Pattern
+	- 대용량 시스템이나 메시지 발행 실패에 대한 엄격한 보장이 필요한 경우
+```JAVA
+@Component
+@RequiredArgsConstructor
+public class OrderApplication {
+    
+    private final OrderService orderService;
+    private final OutboxService outboxService;
+    
+    @Transactional
+    public void orderGenerateWithPublish(OrderVo orderVo) {
+        Order order = orderService.save(orderVo.toEntity());
+        
+        // 같은 트랜잭션 내에서 outbox 테이블에 메시지 저장
+        OutboxEvent outboxEvent = OutboxEvent.builder()
+            .aggregateId(order.getId())
+            .eventType("ORDER_CREATED")
+            .payload(OrderMessage.from(order))
+            .build();
+            
+        outboxService.save(outboxEvent);
+    }
+}
+```
