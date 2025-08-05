@@ -99,3 +99,13 @@ Map
 	- 내부적으로 배열을 사용함
 	- 중간에 요소를 삽입하거나 삭제하면 모든 요소들을 이동시켜야함
 - 만약 리스트의 뒤쪽에서 빈번하면 ArrayList가 유리하긴함
+
+### HashMap vs Hashtable
+- 둘 다 key-value 쌍으로 데이터를 저장하는 자료구조
+- Thread safe
+	- Hashtable 은 동기화 되어있어 Thread-safe함
+	- HashMap 은 기본적으로 Thread-safe하지 않으나 `Collections.synchronizedMap()`이나 `ConcurrentHashMap`을 사용해서 동기화를 구현할 수 있음
+- Null 허용 여부
+	- `HashMap` 은 null key와 value를 허용함
+	- `Hashtable` 은 null key와 value를 허용하지 않음
+- Hashtable은 전체 메서드를 `synchronized` 처리하기 때문에 Multi-Thread 환경에서는 성능이 떨어질 수 있음(거의 사용되지 않고 호환성을 위해 남아있음). `ConcurrentHashMap`은 Lock 분할을 지원하기 때문에 더 효율적
